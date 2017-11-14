@@ -12,7 +12,7 @@ var Promise = require("bluebird");
 // Regquire all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //Initialize Express
 
@@ -35,9 +35,13 @@ app.use(express.static("public"));
 //Connect to Mongo DB
 
 mongoose.Promise = Promise;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/working"
+
 mongoose.connect("mongodb://localhost/working",{
 	useMongoClient: true
 });
+
+//MONGODB_URI: mongodb://heroku_5h1xp7q5:eabdjack7fr55ggr0852968lij@ds259255.mlab.com:59255/heroku_5h1xp7q5
 
 
 //Routes
